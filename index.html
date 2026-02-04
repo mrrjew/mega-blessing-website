@@ -388,7 +388,7 @@
 
     <script>
       const PAYSTACK_KEY = "pk_test_ee994c4c0c2ea9735b93fd1337899aee6ca57f8b";
-      const BACKEND_URL = "http://localhost:3000"; // Your backend URL
+      const BACKEND_URL = "https://smart-arena-engine.gklive.online";
 
       const FIXED_AMOUNT = 15; // GHS
       const LOCATION = "PL";
@@ -481,6 +481,7 @@
           email: data.email,
           amount: FIXED_AMOUNT * 100,
           currency: "GHS",
+          paymentChannels: ["card", "mobile_money"],
           callback: function (response) {
             submitToBackend(data, "success", response.reference)
               .then(() => {
