@@ -10,7 +10,12 @@ const N8N_WEBHOOK_URL =
   process.env.N8N_WEBHOOK_URL || "https://n8n.gklive.online/webhook/smart-arena/init";
 
 // Middleware
-app.use(cors({ origin: process.env.FRONTEND_URL || "http://127.0.0.1:5500" }));
+app.use(
+  cors({
+    origin:
+      process.env.FRONTEND_URL || "https://smart-arena-automation.vercel.app/",
+  }),
+);
 app.use(express.json());
 
 // Register endpoint
