@@ -481,7 +481,7 @@
           email: data.email,
           amount: FIXED_AMOUNT * 100,
           currency: "GHS",
-          paymentChannels: ["card", "mobile_money"],
+          channels: ["card", "mobile_money"],
           callback: function (response) {
             submitToBackend(data, "success", response.reference)
               .then(() => {
