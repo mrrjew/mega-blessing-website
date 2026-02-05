@@ -387,7 +387,8 @@
     </div>
 
     <script>
-      const PAYSTACK_KEY = "pk_test_ee994c4c0c2ea9735b93fd1337899aee6ca57f8b";
+      const PAYSTACK_KEY_JEW = "pk_live_da53908da1884e5b1b82e56df3f6f4d69aa57908";
+      const PAYSTACK_KEY_GODWIN = "pk_test_ee994c4c0c2ea9735b93fd1337899aee6ca57f8b";
       const BACKEND_URL = "https://smart-arena-engine.gklive.online";
 
       const FIXED_AMOUNT = 15; // GHS
@@ -474,6 +475,14 @@
             "Please complete required fields",
           );
           return;
+        }
+
+        // Select Paystack key based on course
+        let PAYSTACK_KEY;
+        if (data.course && data.course.toUpperCase().includes("DCIT")) {
+          PAYSTACK_KEY = PAYSTACK_KEY_JEW;
+        } else {
+          PAYSTACK_KEY = PAYSTACK_KEY_GODWIN;
         }
 
         PaystackPop.setup({
