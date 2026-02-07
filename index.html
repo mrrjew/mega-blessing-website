@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Smart Arena – Extra Classes</title>
+    <title>Mega Blessing Chapel International – Throne of Grace Temple</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -335,35 +335,119 @@
     <div class="container">
       <div class="card">
         <div class="header">
-          <h2>Smart Arena</h2>
+          <h2>Mega Blessing Chapel International</h2>
           <p class="description">
-            Join Smart Arena to access expertly-crafted extra classes and
-            elevate your academic performance. Register now to unlock premium
-            learning resources tailored for your success.
+            Welcome to
+            <span style="font-weight: 700; color: #fff"
+              >Mega Blessing Chapel International</span
+            ><br />
+            <span
+              style="
+                display: inline-block;
+                margin: 0.5em 0 1em 0;
+                padding: 0.4em 1.2em;
+                background: linear-gradient(90deg, #a855f7, #ea580c);
+                color: #fff;
+                border-radius: 1em;
+                font-size: 1.1em;
+                font-weight: 800;
+                letter-spacing: 0.04em;
+                box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+              "
+              >Throne of Grace Temple</span
+            ><br />
+            Please fill the form below to register your details with the church
+            administration.
           </p>
         </div>
 
-        <div class="form-group">
-          <input id="full_name" placeholder="Full Name" required />
-          <input id="email" type="email" placeholder="Email" required />
-          <input id="phone_number" placeholder="Phone Number" required />
-          <input id="level" placeholder="Level (e.g. 200)" />
-          <input id="program" placeholder="Program" />
-
-          <select id="course" required onchange="updateClassType()">
-            <option value="">Select Course</option>
-            <option value="PHYS 143">PHYS 143</option>
-            <option value="MATH 121">MATH 121</option>
-            <option value="DCIT 101">DCIT 101</option>
-          </select>
-
-          <select id="class_type" style="display: none">
-            <option value="online">Online</option>
-            <option value="in-person">In Person</option>
-          </select>
-
-          <button onclick="pay()">Pay & Register</button>
-        </div>
+        <form id="stepForm" class="form-group">
+          <div class="step" id="step-1">
+            <input id="full_name" placeholder="Full Name" required />
+            <input id="dob" type="date" placeholder="Date of Birth" required />
+            <select id="gender" required>
+              <option value="">Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <input id="place_of_birth" placeholder="Place of Birth" required />
+            <input id="hometown" placeholder="Hometown" required />
+            <input id="nationality" placeholder="Nationality" required />
+            <input id="marital_status" placeholder="Marital Status" required />
+            <button type="button" onclick="nextStep()">Next</button>
+          </div>
+          <div class="step" id="step-2" style="display: none">
+            <input id="contact_number" placeholder="Contact Number" required />
+            <input
+              id="whatsapp_number"
+              placeholder="WhatsApp Number"
+              required
+            />
+            <input id="occupation" placeholder="Your Occupation" required />
+            <input
+              id="place_of_work_school"
+              placeholder="Place of Work/School"
+              required
+            />
+            <input
+              id="residential_address"
+              placeholder="Residential Address"
+              required
+            />
+            <button type="button" onclick="prevStep()">Back</button>
+            <button type="button" onclick="nextStep()">Next</button>
+          </div>
+          <div class="step" id="step-3" style="display: none">
+            <input id="mother_name" placeholder="Mother's Name" required />
+            <input
+              id="mother_condition"
+              placeholder="Mother's Condition"
+              required
+            />
+            <input id="father_name" placeholder="Father's Name" required />
+            <input
+              id="father_condition"
+              placeholder="Father's Condition"
+              required
+            />
+            <input id="spouse_name" placeholder="Name of Spouse if Married" />
+            <input
+              id="number_of_children"
+              placeholder="Number of Children if Any"
+            />
+            <input id="spouse_contact" placeholder="Spouse Contact" />
+            <button type="button" onclick="prevStep()">Back</button>
+            <button type="button" onclick="nextStep()">Next</button>
+          </div>
+          <div class="step" id="step-4" style="display: none">
+            <input id="next_of_kin" placeholder="Next of Kin" required />
+            <input id="next_of_kin_contact" placeholder="Contact" required />
+            <input
+              id="baptized"
+              placeholder="Have you been baptized"
+              required
+            />
+            <input
+              id="introduced_by"
+              placeholder="Name of Person Who Introduced You to the Church"
+              required
+            />
+            <label for="ministries"
+              >The Ministries / Departments of the Church</label
+            >
+            <select id="ministries" multiple required>
+              <option value="Youth Ministry">Youth Ministry</option>
+              <option value="Media">Media</option>
+              <option value="Ushering">Ushering</option>
+              <option value="Choir">Choir</option>
+              <option value="Prayer">Prayer</option>
+              <option value="Evangelism">Evangelism</option>
+            </select>
+            <button type="button" onclick="prevStep()">Back</button>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -387,12 +471,36 @@
     </div>
 
     <script>
-      const PAYSTACK_KEY_JEW =
-        "pk_live_da53908da1884e5b1b82e56df3f6f4d69aa57908";
-      const BACKEND_URL = "https://smart-arena-engine.gklive.online";
+      // Stepper logic
+      let currentStep = 1;
+      const totalSteps = 4;
 
-      const FIXED_AMOUNT = 15; // GHS
-      const LOCATION = "PL";
+      function showStep(step) {
+        for (let i = 1; i <= totalSteps; i++) {
+          document.getElementById(`step-${i}`).style.display =
+            i === step ? "block" : "none";
+        }
+        currentStep = step;
+      }
+
+      function nextStep() {
+        if (currentStep < totalSteps) {
+          showStep(currentStep + 1);
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          showStep(currentStep - 1);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        showStep(1);
+        document
+          .getElementById("stepForm")
+          .addEventListener("submit", handleSubmit);
+      });
 
       function showModal(type, title, message) {
         const modal = document.getElementById("modal");
@@ -420,111 +528,77 @@
         modal.classList.remove("active");
       }
 
-      function updateClassType() {
-        const course = document.getElementById("course").value;
-        const classType = document.getElementById("class_type");
-
-        if (course.includes("PHYS") || course.includes("MATH")) {
-          classType.value = "in-person";
-        } else if (course.includes("DCIT") || course.includes("CODING")) {
-          classType.value = "online";
-        } else {
-          classType.value = "online";
-        }
-      }
-
-      async function submitToBackend(data, paymentStatus, reference = null) {
-        try {
-          const response = await fetch(`${BACKEND_URL}/api/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              ...data,
-              payment_status: paymentStatus,
-              reference: reference,
-            }),
-          });
-
-          if (!response.ok) throw new Error("Backend request failed");
-          return await response.json();
-        } catch (error) {
-          console.error("Error:", error);
-          throw error;
-        }
-      }
-
-      function pay() {
-        // Set amount based on course
-        let amount;
-        const courseValue = course.value ? course.value.toUpperCase() : "";
-        if (courseValue.includes("DCIT") || courseValue.includes("CODING")) {
-          amount = 15;
-        } else {
-          amount = 10;
-        }
-
+      async function handleSubmit(e) {
+        e.preventDefault();
+        // Gather all form data
         const data = {
-          full_name: full_name.value,
-          email: email.value,
-          phone_number: phone_number.value,
-          level: level.value,
-          program: program.value,
-          course: course.value,
-          amount: amount,
-          class_type: class_type.value,
-          location: LOCATION,
+          "Submission ID": `SUB-${Date.now()}`,
+          "Respondent ID": "Member",
+          "Submitted at": new Date().toISOString().slice(0, 10),
+          "FULL NAME": document.getElementById("full_name").value,
+          "DATE OF BIRTH": document.getElementById("dob").value,
+          GENDER: document.getElementById("gender").value,
+          "PLACE OF BIRTH": document.getElementById("place_of_birth").value,
+          HOMETOWN: document.getElementById("hometown").value,
+          NATIONALITY: document.getElementById("nationality").value,
+          "MARITAL STATUS": document.getElementById("marital_status").value,
+          "CONTACT NUMBER": document.getElementById("contact_number").value,
+          "WHATSAPP NUMBER": document.getElementById("whatsapp_number").value,
+          "YOUR OCCUPATION": document.getElementById("occupation").value,
+          "PLACE OF WORK/SCHOOL": document.getElementById(
+            "place_of_work_school",
+          ).value,
+          "RESIDENTIAL ADDRESS": document.getElementById("residential_address")
+            .value,
+          "MOTHER'S NAME": document.getElementById("mother_name").value,
+          "MOTHER'S CONDITION":
+            document.getElementById("mother_condition").value,
+          "FATHER'S NAME": document.getElementById("father_name").value,
+          "FATHER'S CONDITION":
+            document.getElementById("father_condition").value,
+          "NAME OF SPOUSE IF MARRIED":
+            document.getElementById("spouse_name").value,
+          "NUMBER OF CHILDREN IF ANY":
+            document.getElementById("number_of_children").value,
+          "SPOUSE CONTACT": document.getElementById("spouse_contact").value,
+          "NEXT OF KIN": document.getElementById("next_of_kin").value,
+          CONTACT: document.getElementById("next_of_kin_contact").value,
+          "HAVE YOU BEEN BAPTIZED": document.getElementById("baptized").value,
+          "NAME OF PERSON WHO INTRODUCED YOU TO THE CHURCH":
+            document.getElementById("introduced_by").value,
+          "THE MINISTRIES / DEPARTMENTS OF THE CHURCH": Array.from(
+            document.getElementById("ministries").selectedOptions,
+          ).map((opt) => opt.value),
         };
 
-        console.log(data);
-
-        if (!data.email || !data.course || !data.full_name) {
+        try {
+          const url = "http://localhost:3001/api/register";
+          const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (!response.ok) {
+            const err = await response.json();
+            showModal(
+              "error",
+              "Submission Failed",
+              err.error || "An error occurred. Please try again.",
+            );
+            return;
+          }
+          showModal(
+            "success",
+            "Submission Successful",
+            "Thank you for submitting your details.",
+          );
+        } catch (err) {
           showModal(
             "error",
-            "Missing Information",
-            "Please complete required fields",
+            "Submission Failed",
+            "An error occurred. Please try again.",
           );
-          return;
         }
-
-        // Subaccount logic
-        let subaccount = null;
-        if (courseValue.includes("PHYS") || courseValue.includes("MATH")) {
-          subaccount = "ACCT_f1s7qsloi1y3c1m";
-        }
-
-        console.log(subaccount)
-        PaystackPop.setup({
-          key: PAYSTACK_KEY_JEW, // Use only one public key
-          email: data.email,
-          amount: amount * 100,
-          currency: "GHS",
-          ...(subaccount && { subaccount: subaccount }),
-          bearer: "subaccount",
-          channels: ["card", "mobile_money"],
-          callback: function (response) {
-            submitToBackend(data, "success", response.reference)
-              .then(() => {
-                showModal(
-                  "success",
-                  "Payment Successful",
-                  "Check your email for further instructions. Contact admin on jwlarbi15@gmail.com if no email is received.",
-                );
-                setTimeout(() => location.reload(), 2000);
-              })
-              .catch(() => {
-                showModal(
-                  "error",
-                  "Server Error",
-                  "Payment recorded but notification failed. Please contact support on jwlarbi15@gmail.com.",
-                );
-              });
-          },
-          onClose: function () {
-            submitToBackend(data, "failed").catch((error) => {
-              console.error("Error logging failed payment:", error);
-            });
-          },
-        }).openIframe();
       }
     </script>
   </body>
