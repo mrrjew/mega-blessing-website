@@ -374,16 +374,69 @@
             <input id="place_of_birth" placeholder="Place of Birth" required />
             <input id="hometown" placeholder="Hometown" required />
             <input id="nationality" placeholder="Nationality" required />
-            <input id="marital_status" placeholder="Marital Status" required />
+            <select id="marital_status" required>
+              <option value="">Marital Status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Other">Other</option>
+            </select>
             <button type="button" onclick="nextStep()">Next</button>
           </div>
           <div class="step" id="step-2" style="display: none">
-            <input id="contact_number" placeholder="Contact Number" required />
-            <input
-              id="whatsapp_number"
-              placeholder="WhatsApp Number"
-              required
-            />
+            <div style="display: flex; align-items: center; gap: 0.5rem">
+              <input
+                id="contact_country_code"
+                type="text"
+                value="+233"
+                placeholder="+233"
+                required
+                pattern="\+[0-9]{1,}"
+                title="Country code (e.g. +233)"
+                style="
+                  width: 70px;
+                  background: #1e293b;
+                  color: #f2f2f2;
+                  border: 1px solid rgba(113, 128, 150, 0.3);
+                  border-radius: 0.5rem;
+                  padding: 0.75rem 0.5rem;
+                "
+              />
+              <input
+                id="contact_number"
+                placeholder="Contact Number... 555 555 555"
+                required
+                pattern="[0-9]{6,}"
+                title="Please enter the rest of the phone number"
+                style="flex: 1"
+              />
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem">
+              <input
+                id="whatsapp_country_code"
+                type="text"
+                value="+233"
+                placeholder="+233"
+                required
+                pattern="\+[0-9]{1,}"
+                title="Country code (e.g. +233)"
+                style="
+                  width: 70px;
+                  background: #1e293b;
+                  color: #f2f2f2;
+                  border: 1px solid rgba(113, 128, 150, 0.3);
+                  border-radius: 0.5rem;
+                  padding: 0.75rem 0.5rem;
+                "
+              />
+              <input
+                id="whatsapp_number"
+                placeholder="WhatsApp Number... 555 555 555"
+                required
+                pattern="[0-9]{6,}"
+                title="Please enter the rest of the phone number"
+                style="flex: 1"
+              />
+            </div>
             <input id="occupation" placeholder="Your Occupation" required />
             <input
               id="place_of_work_school"
@@ -400,34 +453,85 @@
           </div>
           <div class="step" id="step-3" style="display: none">
             <input id="mother_name" placeholder="Mother's Name" required />
-            <input
-              id="mother_condition"
-              placeholder="Mother's Condition"
-              required
-            />
+            <select id="mother_condition" required>
+              <option value="">Mother's Condition</option>
+              <option value="Alive">Alive</option>
+              <option value="Dead">Dead</option>
+            </select>
             <input id="father_name" placeholder="Father's Name" required />
-            <input
-              id="father_condition"
-              placeholder="Father's Condition"
-              required
-            />
+            <select id="father_condition" required>
+              <option value="">Father's Condition</option>
+              <option value="Alive">Alive</option>
+              <option value="Dead">Dead</option>
+            </select>
             <input id="spouse_name" placeholder="Name of Spouse if Married" />
             <input
               id="number_of_children"
               placeholder="Number of Children if Any"
             />
-            <input id="spouse_contact" placeholder="Spouse Contact" />
+            <div style="display: flex; align-items: center; gap: 0.5rem">
+              <input
+                id="spouse_country_code"
+                type="text"
+                value="+233"
+                placeholder="+233"
+                pattern="\+[0-9]{1,}"
+                title="Country code (e.g. +233)"
+                style="
+                  width: 70px;
+                  background: #1e293b;
+                  color: #f2f2f2;
+                  border: 1px solid rgba(113, 128, 150, 0.3);
+                  border-radius: 0.5rem;
+                  padding: 0.75rem 0.5rem;
+                "
+              />
+              <input
+                id="spouse_contact"
+                placeholder="Spouse Contact Number... 555 555 555"
+                pattern="[0-9]{6,}"
+                title="Please enter the rest of the phone number"
+                style="flex: 1"
+              />
+            </div>
             <button type="button" onclick="prevStep()">Back</button>
             <button type="button" onclick="nextStep()">Next</button>
           </div>
           <div class="step" id="step-4" style="display: none">
             <input id="next_of_kin" placeholder="Next of Kin" required />
-            <input id="next_of_kin_contact" placeholder="Contact" required />
-            <input
-              id="baptized"
-              placeholder="Have you been baptized"
-              required
-            />
+            <div style="display: flex; align-items: center; gap: 0.5rem">
+              <input
+                id="next_of_kin_country_code"
+                type="text"
+                value="+233"
+                placeholder="+233"
+                required
+                pattern="\+[0-9]{1,}"
+                title="Country code (e.g. +233)"
+                style="
+                  width: 70px;
+                  background: #1e293b;
+                  color: #f2f2f2;
+                  border: 1px solid rgba(113, 128, 150, 0.3);
+                  border-radius: 0.5rem;
+                  padding: 0.75rem 0.5rem;
+                "
+              />
+              <input
+                id="next_of_kin_contact"
+                placeholder="Next of Kin Contact Number... 555 555 555"
+                required
+                pattern="[0-9]{6,}"
+                title="Please enter the rest of the phone number"
+                style="flex: 1"
+              />
+            </div>
+
+            <select id="baptized" required>
+              <option value="">Have you been baptized</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
             <input
               id="introduced_by"
               placeholder="Name of Person Who Introduced You to the Church"
@@ -471,6 +575,75 @@
     </div>
 
     <script>
+      // Helper: Get all form field IDs
+      const formFieldIds = [
+        "full_name",
+        "dob",
+        "gender",
+        "place_of_birth",
+        "hometown",
+        "nationality",
+        "marital_status",
+        "contact_number",
+        "whatsapp_number",
+        "occupation",
+        "place_of_work_school",
+        "residential_address",
+        "mother_name",
+        "mother_condition",
+        "father_name",
+        "father_condition",
+        "spouse_name",
+        "number_of_children",
+        "spouse_contact",
+        "next_of_kin",
+        "next_of_kin_contact",
+        "baptized",
+        "introduced_by",
+        "ministries",
+      ];
+
+      // Save form data to localStorage
+      function saveFormData() {
+        const data = {};
+        for (const id of formFieldIds) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          if (el.type === "select-multiple") {
+            data[id] = Array.from(el.selectedOptions).map((opt) => opt.value);
+          } else {
+            data[id] = el.value;
+          }
+        }
+        localStorage.setItem("churchFormData", JSON.stringify(data));
+      }
+
+      // Restore form data from localStorage
+      function restoreFormData() {
+        const data = localStorage.getItem("churchFormData");
+        if (!data) return;
+        const parsed = JSON.parse(data);
+        for (const id of formFieldIds) {
+          const el = document.getElementById(id);
+          if (!el || !(id in parsed)) continue;
+          if (el.type === "select-multiple") {
+            for (const opt of el.options) {
+              opt.selected = parsed[id].includes(opt.value);
+            }
+          } else {
+            el.value = parsed[id];
+          }
+        }
+      }
+
+      // Attach change listeners to save data
+      function attachFormListeners() {
+        for (const id of formFieldIds) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          el.addEventListener("change", saveFormData);
+        }
+      }
       // Stepper logic
       let currentStep = 1;
       const totalSteps = 4;
@@ -497,6 +670,8 @@
 
       document.addEventListener("DOMContentLoaded", function () {
         showStep(1);
+        restoreFormData();
+        attachFormListeners();
         document
           .getElementById("stepForm")
           .addEventListener("submit", handleSubmit);
@@ -542,8 +717,12 @@
           HOMETOWN: document.getElementById("hometown").value,
           NATIONALITY: document.getElementById("nationality").value,
           "MARITAL STATUS": document.getElementById("marital_status").value,
-          "CONTACT NUMBER": document.getElementById("contact_number").value,
-          "WHATSAPP NUMBER": document.getElementById("whatsapp_number").value,
+          "CONTACT NUMBER":
+            document.getElementById("contact_country_code").value +
+            document.getElementById("contact_number").value,
+          "WHATSAPP NUMBER":
+            document.getElementById("whatsapp_country_code").value +
+            document.getElementById("whatsapp_number").value,
           "YOUR OCCUPATION": document.getElementById("occupation").value,
           "PLACE OF WORK/SCHOOL": document.getElementById(
             "place_of_work_school",
@@ -560,9 +739,14 @@
             document.getElementById("spouse_name").value,
           "NUMBER OF CHILDREN IF ANY":
             document.getElementById("number_of_children").value,
-          "SPOUSE CONTACT": document.getElementById("spouse_contact").value,
+          "SPOUSE CONTACT": document.getElementById("spouse_contact").value
+            ? document.getElementById("spouse_country_code").value +
+              document.getElementById("spouse_contact").value
+            : "",
           "NEXT OF KIN": document.getElementById("next_of_kin").value,
-          CONTACT: document.getElementById("next_of_kin_contact").value,
+          CONTACT:
+            document.getElementById("next_of_kin_country_code").value +
+            document.getElementById("next_of_kin_contact").value,
           "HAVE YOU BEEN BAPTIZED": document.getElementById("baptized").value,
           "NAME OF PERSON WHO INTRODUCED YOU TO THE CHURCH":
             document.getElementById("introduced_by").value,
@@ -592,6 +776,8 @@
             "Submission Successful",
             "Thank you for submitting your details.",
           );
+          // Clear localStorage and refresh after a short delay
+          localStorage.removeItem("churchFormData");
           setTimeout(() => location.reload(), 1800);
         } catch (err) {
           showModal(
