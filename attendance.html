@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en" class="h-full bg-gray-50">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance - Mega Blessing Chapel International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-overlay {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Connect Select visual style matches inputs */
+        select {
+            background-image: none !important;
+            /* Ensure we use our custom chevron div */
+        }
+    </style>
+</head>
+
+<body class="h-full font-['Inter'] antialiased text-gray-900">
+
+    <!-- Mobile Sidebar Dialog -->
+    <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true" id="mobile-sidebar" style="display: none;">
+        <div class="fixed inset-0 bg-gray-900/80 transition-opacity"></div>
+        <div class="fixed inset-0 flex">
+            <div class="relative mr-16 flex w-full max-w-xs flex-1">
+                <div class="absolute top-0 left-full flex w-16 justify-center pt-5">
+                    <button type="button" class="-m-2.5 p-2.5" onclick="toggleSidebar()">
+                        <span class="sr-only">Close sidebar</span>
+                        <svg class="size-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                    <div class="flex h-16 shrink-0 items-center">
+                        <img src="church logo.png" alt="MBCI Logo" class="h-12 w-auto" />
+                    </div>
+                    <nav class="flex flex-1 flex-col">
+                        <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                            <li>
+                                <ul role="list" class="-mx-2 space-y-1">
+                                    <li>
+                                        <a href="membership.html"
+                                            class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
+                                            <svg class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                            </svg>
+                                            Membership
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="payments.html"
+                                            class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
+                                            <svg class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                                            </svg>
+                                            Payments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="attendance.html"
+                                            class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold text-indigo-600">
+                                            <svg class="size-6 shrink-0 text-indigo-600" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M20.25 6.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V7.5c0-.621-.504-1.125-1.125-1.125H20.25Zm-3.75 8.625h.008v.008h-.008V15Zm0 3h.008v.008h-.008V18Z" />
+                                            </svg>
+                                            Attendance
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Sidebar -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
+        <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+            <div class="flex h-16 shrink-0 items-center">
+                <img src="church logo.png" alt="MBCI Logo" class="h-12 w-auto" />
+            </div>
+            <nav class="flex flex-1 flex-col">
+                <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                    <li>
+                        <ul role="list" class="-mx-2 space-y-1">
+                            <li>
+                                <a href="membership.html"
+                                    class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
+                                    <svg class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                    </svg>
+                                    Membership
+                                </a>
+                            </li>
+                            <li>
+                                <a href="payments.html"
+                                    class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
+                                    <svg class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                                    </svg>
+                                    Payments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="attendance.html"
+                                    class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold text-indigo-600">
+                                    <svg class="size-6 shrink-0 text-indigo-600" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M20.25 6.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V7.5c0-.621-.504-1.125-1.125-1.125H20.25Zm-3.75 8.625h.008v.008h-.008V15Zm0 3h.008v.008h-.008V18Z" />
+                                    </svg>
+                                    Attendance
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="lg:pl-64 h-full flex flex-col bg-gray-50 overflow-y-auto">
+        <div
+            class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-xs sm:gap-x-6 sm:px-6 lg:px-8">
+            <button type="button" class="-m-2.5 p-2.5 text-gray-700 hover:text-gray-900 lg:hidden"
+                onclick="toggleSidebar()">
+                <span class="sr-only">Open sidebar</span>
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+            <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 items-center">
+                <h2 class="text-lg font-semibold text-gray-900">Mega Blessing Chapel International</h2>
+            </div>
+        </div>
+
+        <main class="py-10">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 fade-in">
+                <form id="attendanceForm">
+                    <div class="space-y-12">
+                        <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+                            <div>
+                                <h2 class="text-base/7 font-semibold text-gray-900">Mark Attendance</h2>
+                                <p class="mt-1 text-sm/6 text-gray-600">Please check in for the service.</p>
+                            </div>
+
+                            <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+                                <div class="col-span-full">
+                                    <label for="full_name" class="block text-sm/6 font-medium text-gray-900">Full
+                                        Name</label>
+                                    <div class="mt-2">
+                                        <input type="text" id="full_name" name="full_name" required
+                                            placeholder="John Doe"
+                                            class="block w-full rounded-lg border-0 bg-white/50 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6" />
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="phone_number" class="block text-sm/6 font-medium text-gray-900">Phone
+                                        Number</label>
+                                    <div class="mt-2 flex gap-2">
+                                        <input id="country_code" type="text" value="+233"
+                                            class="block w-20 rounded-lg border-0 bg-gray-50 px-3.5 py-2 text-center text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6" />
+                                        <input id="phone_number" type="tel" name="phone_number" required
+                                            class="block w-full rounded-lg border-0 bg-white/50 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6" />
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="service_type" class="block text-sm/6 font-medium text-gray-900">Service
+                                        Type</label>
+                                    <div class="mt-2">
+                                        <div class="relative">
+                                            <select id="service_type" name="service_type" required
+                                                class="block w-full appearance-none rounded-lg border-0 bg-white/50 py-2.5 pr-10 pl-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6 cursor-pointer">
+                                                <option value="Sunday Service">Sunday Service</option>
+                                                <option value="Wednesday Prophetic Service">Wednesday Prophetic Service
+                                                </option>
+                                                <option value="Youth Meeting">Youth Meeting</option>
+                                                <option value="Men's Meeting">Men's Meeting</option>
+                                            </select>
+                                            <div
+                                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                    aria-hidden="true">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <button type="submit" id="submit-btn"
+                            class="flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span id="submit-text">Check In</span>
+                            <svg id="submit-loader" class="hidden animate-spin h-5 w-5 text-white"
+                                viewDidLoad="this.style.display='none'" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom Modal -->
+    <div id="modal"
+        class="modal-overlay fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 opacity-0 invisible backdrop-blur-sm">
+        <div
+            class="modal-content w-[90%] max-w-[400px] transform scale-90 rounded-2xl bg-white p-8 shadow-2xl transition-transform duration-300">
+            <div class="mb-4 flex items-center gap-4">
+                <div id="modal-icon"
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl font-bold"></div>
+                <h3 id="modal-title" class="m-0 text-xl font-bold text-gray-900"></h3>
+            </div>
+            <p id="modal-message" class="mb-6 text-[0.95rem] leading-relaxed text-gray-600"></p>
+            <div class="flex justify-end gap-4">
+                <button id="modal-close-btn"
+                    class="cursor-pointer rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-px hover:bg-indigo-700 hover:shadow-lg"
+                    onclick="closeModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar Toggle
+        const sidebar = document.getElementById('mobile-sidebar');
+        function toggleSidebar() {
+            if (sidebar.style.display === 'none') {
+                sidebar.style.display = 'block';
+            } else {
+                sidebar.style.display = 'none';
+            }
+        }
+
+        const form = document.getElementById('attendanceForm');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const submitLoader = document.getElementById('submit-loader');
+
+        function toggleLoader(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                submitText.classList.add('hidden');
+                submitLoader.classList.remove('hidden');
+            } else {
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitLoader.classList.add('hidden');
+            }
+        }
+
+        function showModal(type, title, message) {
+            const modal = document.getElementById("modal");
+            const icon = document.getElementById("modal-icon");
+            const titleEl = document.getElementById("modal-title");
+            const messageEl = document.getElementById("modal-message");
+
+            icon.className = `flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl font-bold`;
+
+            if (type === "success") {
+                icon.classList.add("bg-green-100", "text-green-600");
+                icon.textContent = "✓";
+            } else if (type === "error") {
+                icon.classList.add("bg-red-100", "text-red-600");
+                icon.textContent = "✕";
+            } else {
+                icon.classList.add("bg-blue-100", "text-blue-600");
+                icon.textContent = "ℹ";
+            }
+
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            modal.classList.add("active");
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.classList.remove("active");
+            if (window.submitSuccess) {
+                location.reload();
+            }
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            toggleLoader(true);
+
+            const formData = {
+                fullName: document.getElementById('full_name').value,
+                phoneNumber: document.getElementById('country_code').value + document.getElementById('phone_number').value,
+                serviceType: document.getElementById('service_type').value,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const BACKEND_URL = 'http://localhost:3002/api/attendance';
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    window.submitSuccess = true;
+                    showModal('success', 'Checked In!', 'You have successfully checked in for the service.');
+                    form.reset();
+                    setTimeout(() => location.reload(), 2000);
+                } else {
+                    showModal('error', 'Error', 'Failed to check in. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showModal('error', 'Error', 'Something went wrong. Please try again.');
+            } finally {
+                toggleLoader(false);
+            }
+        });
+    </script>
+</body>
+
+</html>

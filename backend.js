@@ -94,6 +94,46 @@ app.post("/api/pay", async (req, res) => {
   }
 });
 
+// Attendance webhook proxy
+app.post("/api/attendance", async (req, res) => {
+  try {
+    // Default to the likely base URL if env var is missing, preserving the user's requested path
+    const N8N_ATTENDANCE_URL =
+      process.env.N8N_ATTENDANCE_WEBHOOK_URL ||
+      "https://n8n.gklive.online/webhook/church-retention/attendance";
+
+    if (!N8N_ATTENDANCE_URL || !/^https?:\/\//.test(N8N_ATTENDANCE_URL)) {
+      console.error("Attendance Webhook URL invalid");
+      return res.status(500).json({ error: "Attendance service not configured" });
+    }
+
+    const payload = req.body;
+
+    // Validation
+    if (!payload.fullName || !payload.phoneNumber || !payload.serviceType) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const n8nResponse = await fetch(N8N_ATTENDANCE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!n8nResponse.ok) {
+      console.error("n8n attendance webhook failed:", n8nResponse.statusText);
+      return res.status(500).json({ error: "Failed to record attendance" });
+    }
+
+    const data = await n8nResponse.json();
+    res.json(data);
+
+  } catch (error) {
+    console.error("Attendance proxy error:", error);
+    res.status(500).json({ error: "Server error processing attendance" });
+  }
+});
+
 // Health check
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
