@@ -57,6 +57,43 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
+// Payment webhook proxy
+app.post("/api/pay", async (req, res) => {
+  try {
+    const N8N_PAYMENT_URL = process.env.N8N_PAYMENT_WEBHOOK_URL;
+
+    if (!N8N_PAYMENT_URL || !/^https?:\/\//.test(N8N_PAYMENT_URL)) {
+      console.error("Payment Webhook URL not configured");
+      return res.status(500).json({ error: "Payment service not configured" });
+    }
+
+    const payload = req.body;
+
+    // Basic validation
+    if (!payload.amount || !payload.reference || !payload.paymentType) {
+      return res.status(400).json({ error: "Missing required payment fields" });
+    }
+
+    const n8nResponse = await fetch(N8N_PAYMENT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!n8nResponse.ok) {
+      console.error("n8n payment webhook failed:", n8nResponse.statusText);
+      return res.status(500).json({ error: "Failed to record payment" });
+    }
+
+    const data = await n8nResponse.json();
+    res.json(data);
+
+  } catch (error) {
+    console.error("Payment proxy error:", error);
+    res.status(500).json({ error: "Internal server error during payment processing" });
+  }
+});
+
 // Health check
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });

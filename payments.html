@@ -26,6 +26,21 @@
                 transform: translateY(0);
             }
         }
+
+        .modal-overlay {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Connect Select visual style matches inputs */
+        select {
+            background-image: none !important;
+            /* Ensure we use our custom chevron div */
+        }
     </style>
 </head>
 
@@ -52,7 +67,7 @@
 
                     <div class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                         <div class="relative flex h-16 shrink-0 items-center">
-                            <h1 class="text-xl font-bold text-indigo-600">MBCI</h1>
+                            <img src="church logo.png" alt="MBCI Logo" class="h-12 w-auto" />
                         </div>
                         <nav class="relative flex flex-1 flex-col">
                             <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -95,7 +110,7 @@
     <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
         <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
             <div class="flex h-16 shrink-0 items-center">
-                <h1 class="text-xl font-bold text-indigo-600">MBCI</h1>
+                <img src="church logo.png" alt="MBCI Logo" class="h-12 w-auto" />
             </div>
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -169,6 +184,41 @@
                                             class="block w-full rounded-lg border-0 bg-white/50 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6" />
                                     </div>
                                 </div>
+                                <div class="col-span-full">
+                                    <label class="block text-sm/6 font-medium text-gray-900">Phone Number</label>
+                                    <div class="mt-2 flex gap-2">
+                                        <input id="country_code" type="text" value="+233"
+                                            class="block w-20 rounded-lg border-0 bg-gray-50 px-3.5 py-2 text-center text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6" />
+                                        <input id="phone_number" type="tel" required
+                                            class="block w-full rounded-lg border-0 bg-white/50 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6" />
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="type" class="block text-sm/6 font-medium text-gray-900">Giving
+                                        Type</label>
+                                    <div class="mt-2 text-center">
+                                        <div class="relative">
+                                            <select id="type" required
+                                                class="block w-full appearance-none rounded-lg border-0 bg-white/50 py-2.5 pr-10 pl-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6 cursor-pointer">
+                                                <option value="offering">Offering</option>
+                                                <option value="welfare_dues">Welfare Dues</option>
+                                                <option value="youth_dues">Youth Dues</option>
+                                                <option value="thanksgiving">Thanksgiving</option>
+                                                <option value="support">Support</option>
+                                            </select>
+                                            <div
+                                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                                                    aria-hidden="true">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-span-full">
                                     <label for="amount" class="block text-sm/6 font-medium text-gray-900">Amount
@@ -185,37 +235,10 @@
                                 </div>
 
                                 <div class="col-span-full">
-                                    <label for="type" class="block text-sm/6 font-medium text-gray-900">Giving
-                                        Type</label>
-                                    <div class="mt-2 text-center">
-                                        <div class="relative">
-                                            <select id="type" required
-                                                class="block w-full appearance-none rounded-lg border-0 bg-white/50 py-2.5 pr-10 pl-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6 cursor-pointer">
-                                                <option value="Offering">Offering</option>
-                                                <option value="Tithe">Tithe</option>
-                                                <option value="Seed">Seed</option>
-                                                <option value="Donation">Donation</option>
-                                                <option value="Thanksgiving">Thanksgiving</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                            <div
-                                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
-                                                    aria-hidden="true">
-                                                    <path fill-rule="evenodd"
-                                                        d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-full">
-                                    <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Full Name
-                                        (Optional)</label>
+                                    <label for="full_name" class="block text-sm/6 font-medium text-gray-900">Full
+                                        Name</label>
                                     <div class="mt-2">
-                                        <input type="text" id="first-name" placeholder="John Doe"
+                                        <input type="text" id="full_name" required placeholder="John Doe"
                                             class="block w-full rounded-lg border-0 bg-white/50 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition-all duration-200 sm:text-sm/6" />
                                     </div>
                                 </div>
@@ -226,9 +249,18 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        <button type="submit"
-                            class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200 hover:-translate-y-0.5">Pay
-                            Now</button>
+                        <button type="submit" id="pay-btn"
+                            class="flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span id="pay-text">Pay Now</span>
+                            <svg id="pay-loader" class="hidden animate-spin h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </button>
                     </div>
                 </form>
 
@@ -236,15 +268,101 @@
         </main>
     </div>
 
+    <!-- Custom Modal -->
+    <div id="modal"
+        class="modal-overlay fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 opacity-0 invisible backdrop-blur-sm">
+        <div
+            class="modal-content w-[90%] max-w-[400px] transform scale-90 rounded-2xl bg-white p-8 shadow-2xl transition-transform duration-300">
+            <div class="mb-4 flex items-center gap-4">
+                <div id="modal-icon"
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl font-bold"></div>
+                <h3 id="modal-title" class="m-0 text-xl font-bold text-gray-900"></h3>
+            </div>
+            <p id="modal-message" class="mb-6 text-[0.95rem] leading-relaxed text-gray-600"></p>
+            <div class="flex justify-end gap-4">
+                <button id="modal-close-btn"
+                    class="cursor-pointer rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-px hover:bg-indigo-700 hover:shadow-lg"
+                    onclick="closeModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Script to handle Paystack -->
     <script>
         const paymentForm = document.getElementById('paymentForm');
 
         // REPLACE THIS WITH YOUR PUBLIC KEY AVAILABLE IN YOUR PAYSTACK DASHBOARD
-        // https://dashboard.paystack.com/integration/settings
         const PAYSTACK_PUBLIC_KEY = 'pk_test_ee994c4c0c2ea9735b93fd1337899aee6ca57f8b';
 
+
+
+        const typeSelect = document.getElementById('type');
+        const amountInput = document.getElementById('amount');
+
+        typeSelect.addEventListener('change', function () {
+            if (this.value === 'welfare_dues') {
+                amountInput.value = '50';
+                amountInput.disabled = true;
+            } else if (this.value === 'youth_dues') {
+                amountInput.value = '10';
+                amountInput.disabled = true;
+            } else {
+                amountInput.value = '';
+                amountInput.disabled = false;
+            }
+        });
+
         paymentForm.addEventListener("submit", payWithPaystack, false);
+
+        function showModal(type, title, message) {
+            const modal = document.getElementById("modal");
+            const icon = document.getElementById("modal-icon");
+            const titleEl = document.getElementById("modal-title");
+            const messageEl = document.getElementById("modal-message");
+
+            // Reset classes
+            icon.className = `flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl font-bold`;
+
+            if (type === "success") {
+                icon.classList.add("bg-green-100", "text-green-600");
+                icon.textContent = "✓";
+            } else if (type === "error") {
+                icon.classList.add("bg-red-100", "text-red-600");
+                icon.textContent = "✕";
+            } else {
+                icon.classList.add("bg-blue-100", "text-blue-600");
+                icon.textContent = "ℹ";
+            }
+
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            modal.classList.add("active");
+        }
+
+        const payBtn = document.getElementById('pay-btn');
+        const payText = document.getElementById('pay-text');
+        const payLoader = document.getElementById('pay-loader');
+
+        function toggleLoader(isLoading) {
+            if (isLoading) {
+                payBtn.disabled = true;
+                payText.classList.add('hidden');
+                payLoader.classList.remove('hidden');
+            } else {
+                payBtn.disabled = false;
+                payText.classList.remove('hidden');
+                payLoader.classList.add('hidden');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.classList.remove("active");
+            // Check if success (we can use a flag or check icon class, but simple reload on close for success is ok if we set a flag)
+            if (window.paymentSuccess) {
+                location.reload();
+            }
+        }
 
         function payWithPaystack(e) {
             e.preventDefault();
@@ -252,33 +370,68 @@
             const email = document.getElementById("email-address").value;
             const amount = document.getElementById("amount").value;
             const type = document.getElementById("type").value;
-            const name = document.getElementById("first-name").value;
+            const fullName = document.getElementById("full_name").value;
+            const countryCode = document.getElementById("country_code").value;
+            const phoneNumber = document.getElementById("phone_number").value;
+
+            const fullPhoneNumber = countryCode + phoneNumber;
+
+            toggleLoader(true);
 
             const handler = PaystackPop.setup({
                 key: PAYSTACK_PUBLIC_KEY,
                 email: email,
-                amount: amount * 100, // Paystack expects amount in kobo (lowest currency unit)
-                currency: 'GHS', // Ghana Cedis
+                amount: amount * 100, // Paystack expects amount in kobo
+                currency: 'GHS',
                 metadata: {
                     custom_fields: [
-                        {
-                            display_name: "Giving Type",
-                            variable_name: "giving_type",
-                            value: type
-                        },
-                        {
-                            display_name: "Full Name",
-                            variable_name: "full_name",
-                            value: name
-                        }
+                        { display_name: "Giving Type", variable_name: "giving_type", value: type },
+                        { display_name: "Full Name", variable_name: "full_name", value: fullName },
+                        { display_name: "Phone Number", variable_name: "phone_number", value: fullPhoneNumber }
                     ]
                 },
                 callback: function (response) {
-                    // This happens after the payment is done
-                    alert('Payment successful! Transaction reference: ' + response.reference);
+                    // Payment successful, send data to backend
+                    const payload = {
+                        amount: amount,
+                        reference: response.reference,
+                        paymentType: type,
+                        paymentStatus: "success",
+                        phoneNumber: fullPhoneNumber,
+                        fullName: fullName,
+                        email: email,
+                        intent: "Online Giving"
+                    };
+
+                    // Use the backend proxy endpoint
+                    const BACKEND_URL = 'http://localhost:3002/api/pay';
+
+                    fetch(BACKEND_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    })
+                        .then(res => {
+                            if (res.ok) {
+                                window.paymentSuccess = true;
+                                showModal("success", "Payment Successful", "Thank you! Your payment has been recorded. Refreshing...");
+                                paymentForm.reset();
+                                setTimeout(() => location.reload(), 2000);
+                            } else {
+                                showModal("success", "Payment Successful", "Payment processed, but we couldn't record it in our system. Please check with an admin if needed.");
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            showModal("success", "Payment Successful", "Payment processed. Thank you!");
+                        })
+                        .finally(() => {
+                            toggleLoader(false);
+                        });
                 },
                 onClose: function () {
-                    alert('Transaction was not completed, window closed.');
+                    toggleLoader(false);
+                    showModal("info", "Cancelled", "Transaction was not completed.");
                 }
             });
 
