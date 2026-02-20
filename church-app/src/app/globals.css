@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfcfb;
+  --foreground: #1c1917;
+  --primary: #d4af37;
+  /* Premium Metallic Gold */
+  --primary-light: #ffd457;
+  --primary-dark: #b8860b;
+}
+
+@theme inline {
+  --font-inter: var(--font-inter);
+  --font-outfit: var(--font-outfit);
+  --color-gold-50: #fffdf5;
+  --color-gold-100: #fff9e0;
+  --color-gold-200: #fff0b3;
+  --color-gold-300: #ffe285;
+  --color-gold-400: #ffd457;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #b8860b;
+  --color-gold-700: #916808;
+  --color-gold-800: #6b4c06;
+  --color-gold-900: #453104;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-gradient {
+  background: linear-gradient(to bottom, rgba(212, 175, 55, 0.3), rgba(0, 0, 0, 0.8));
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+}
