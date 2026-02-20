@@ -60,7 +60,7 @@ app.post("/api/register", async (req, res) => {
 // Payment webhook proxy
 app.post("/api/pay", async (req, res) => {
   try {
-    const N8N_PAYMENT_URL = process.env.N8N_PAYMENT_WEBHOOK_URL;
+    const N8N_PAYMENT_URL = process.env.N8N_PAYMENT_WEBHOOK_URL || "https://n8n.gklive.online/webhook/church-retention/pay";
 
     if (!N8N_PAYMENT_URL || !/^https?:\/\//.test(N8N_PAYMENT_URL)) {
       console.error("Payment Webhook URL not configured");
