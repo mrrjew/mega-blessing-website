@@ -1,29 +1,27 @@
 import { NextResponse } from "next/server";
+import { AirtableService } from "@/lib/airtable";
 
 export async function POST(request: Request) {
     try {
-        const N8N_WEBHOOK_URL =
-            process.env.N8N_WEBHOOK_URL ||
-            "https://n8n.gklive.online/webhook/smart-arena/init";
-
         const payload = await request.json();
 
-        const n8nResponse = await fetch(N8N_WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-        });
+        // 1. Create in Airtable (includes duplicate check)
+        const airtableResult = await AirtableService.createMembership(payload);
 
-        if (!n8nResponse.ok) {
-            console.error("n8n registration webhook failed:", n8nResponse.statusText);
-            return NextResponse.json({ error: "Failed to submit registration" }, { status: 500 });
+        if (!airtableResult || airtableResult.error) {
+            const status = airtableResult?.duplicate ? 409 : (airtableResult?.status || 500);
+            return NextResponse.json({ error: airtableResult?.error || "Airtable recording failed" }, { status });
         }
 
-        const data = await n8nResponse.json();
-        return NextResponse.json(data);
+
+        return NextResponse.json({
+            success: true,
+            message: "Registration successful",
+            id: airtableResult?.id
+        });
 
     } catch (error) {
-        console.error("Registration proxy error:", error);
+        console.error("Registration route error:", error);
         return NextResponse.json({ error: "Server error during registration" }, { status: 500 });
     }
 }

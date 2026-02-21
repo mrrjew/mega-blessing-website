@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { AirtableService } from "@/lib/airtable";
 
-export default function Home() {
+export default async function Home() {
+  const content = await AirtableService.getSiteContent();
+  const heroTitle = content?.hero_title || "Where Blessings Overflow & Souls Find Rest";
+  const heroSubtext = content?.hero_subtext || "Experience a vibrant community dedicated to worship, growth, and spreading the unconditional love of Christ.";
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
@@ -23,10 +28,10 @@ export default function Home() {
               ESTABLISHED IN FAITH
             </span>
             <h1 className="font-outfit text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              Where Blessings Overflow <br className="hidden md:block" /> & Souls Find Rest
+              {heroTitle}
             </h1>
             <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
-              Experience a vibrant community dedicated to worship, growth, and spreading the unconditional love of Christ.
+              {heroSubtext}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

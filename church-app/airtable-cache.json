@@ -1,0 +1,290 @@
+{
+  "Leadership": [
+    {
+      "id": "rec9BSkRXMwDLgGXk",
+      "createdTime": "2026-02-21T15:02:41.000Z",
+      "fields": {
+        "Name": "Jew Kofi",
+        "Role": "Head of Media & Technical Team",
+        "Bio": "Oversees all media and technical operations for the department.",
+        "Photo": "https://images.unsplash.com/photo-1544717297-fa95b3496730?auto=format&fit=crop&q=80&w=800",
+        "Department": [
+          "rec2vB6dJftcvrBm3"
+        ]
+      }
+    },
+    {
+      "id": "recHMSJtbT1D0L6SB",
+      "createdTime": "2026-02-21T15:02:41.000Z",
+      "fields": {
+        "Name": "Samuel Boateng",
+        "Role": "Head of Youth Hive",
+        "Bio": "Guides the Youth Hive leadership and youth activities.",
+        "Photo": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=800",
+        "Department": [
+          "recTVceIxMCYHU7CW"
+        ]
+      }
+    },
+    {
+      "id": "recg27J7MqTotXtL4",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Name": "Deaconess Sarah Mensah",
+        "Role": "Head of Music Ministry",
+        "Bio": "Passionate about heavenly worship and musical excellence.",
+        "Photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+      }
+    },
+    {
+      "id": "recgywAWsOhMJd2q4",
+      "createdTime": "2026-02-21T15:02:41.000Z",
+      "fields": {
+        "Name": "Grace Mensah",
+        "Role": "Head of Ushering & Protocol",
+        "Bio": "Leads the ushering and protocol team, ensuring order during services.",
+        "Photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+        "Department": [
+          "recSjtVL6zlpn856H"
+        ]
+      }
+    },
+    {
+      "id": "recr3VdoIMbobm0Fo",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Name": "Elder John Owusu",
+        "Role": "Head of Outreach",
+        "Bio": "Dedicated to reaching the lost and serving the community.",
+        "Photo": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=800"
+      }
+    },
+    {
+      "id": "reczM99KnwgkwwUDZ",
+      "createdTime": "2026-02-21T15:02:41.000Z",
+      "fields": {
+        "Name": "Mary Esinam",
+        "Role": "Head of Music Ministry",
+        "Bio": "Responsible for leading the Music Ministry and ensuring musical excellence.",
+        "Photo": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=800",
+        "Department": [
+          "recjloaoDYsIi831j"
+        ]
+      }
+    }
+  ],
+  "Departments": [
+    {
+      "id": "rec2vB6dJftcvrBm3",
+      "createdTime": "2026-02-21T14:56:43.000Z",
+      "fields": {
+        "Department_Name": "Media & Technical Team",
+        "Head_of_Department": [
+          "rec9BSkRXMwDLgGXk"
+        ],
+        "Member_Names": "Kofi Amoah, Yaw Preko, Ama Serwaa, Bright Kumah, Jennifer Osei"
+      }
+    },
+    {
+      "id": "recSjtVL6zlpn856H",
+      "createdTime": "2026-02-21T14:56:43.000Z",
+      "fields": {
+        "Department_Name": "Ushering & Protocol",
+        "Head_of_Department": [
+          "recgywAWsOhMJd2q4"
+        ],
+        "Member_Names": "Rita Mensah, David Oppong, Victoria Ansah, Charles Boakye"
+      }
+    },
+    {
+      "id": "recTVceIxMCYHU7CW",
+      "createdTime": "2026-02-21T14:56:43.000Z",
+      "fields": {
+        "Department_Name": "The Youth Hive (Leadership)",
+        "Head_of_Department": [
+          "recHMSJtbT1D0L6SB"
+        ],
+        "Member_Names": "Jessica Addo, Prince Boateng, Sandra Mensah"
+      }
+    },
+    {
+      "id": "recjloaoDYsIi831j",
+      "createdTime": "2026-02-21T14:56:43.000Z",
+      "fields": {
+        "Department_Name": "Music Ministry (The Voices of Blessing)",
+        "Head_of_Department": [
+          "reczM99KnwgkwwUDZ"
+        ],
+        "Member_Names": "Emmanuel Okai, Grace Amankwah, Seth Appiah, Doris Mensah, Samuel Boateng, Lydia Owusu, Francis Addo, Esther Tetteh"
+      }
+    }
+  ],
+  "Events": [
+    {
+      "id": "recIUiMm9EWnf63l0",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Title": "Anointing Service",
+        "Date": "2026-03-15",
+        "Time_Range": "6:00 PM - 9:00 PM",
+        "Location": "Throne of Grace (Headquarters)",
+        "Category": "Special Service",
+        "Short_Description": "Join us for a powerful time of prophetic anointing and breakthrough. Come with expectations!",
+        "Long_Description": "Experience the move of God as we gather for a night of impartation and miracles.",
+        "Image_URL": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200"
+      }
+    },
+    {
+      "id": "recOvfyaaaQWCksVW",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Title": "Youth Revival Night",
+        "Date": "2026-04-10",
+        "Time_Range": "7:00 PM - 10:00 PM",
+        "Location": "Youth Hall",
+        "Category": "Youth",
+        "Short_Description": "A vibrant gathering for the youth to encounter God.",
+        "Long_Description": "An evening filled with worship, drama, and the Word, tailored for the next generation.",
+        "Image_URL": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&q=80&w=1200"
+      }
+    },
+    {
+      "id": "recZKl48gYHdO6gWh",
+      "createdTime": "2026-02-21T13:58:21.000Z",
+      "fields": {
+        "Title": "Prophetic Increase",
+        "Date": "2026-02-12",
+        "Time_Range": "9:00 PM - 9:30 PM",
+        "Location": "Accra",
+        "Category": "Special Service",
+        "Short_Description": "Increase in prophetic grace",
+        "Long_Description": "This is a massive program requested by the populace of Egypt",
+        "Image_URL": "https://http"
+      }
+    }
+  ],
+  "Gallery": [
+    {
+      "id": "rec3JZQ0nOFgEpT1X",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Title": "Youth Praise Night",
+        "Description": "Energetic praise and worship led by the youth ministry.",
+        "Image_URL": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&q=80&w=800"
+      }
+    },
+    {
+      "id": "recYjvko0xwUG2MzN",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Title": "Sunday Worship",
+        "Description": "A moment of deep spiritual connection during our main service.",
+        "Image_URL": "https://images.unsplash.com/photo-1438232917352-40d7201ef73c?auto=format&fit=crop&q=80&w=800"
+      }
+    },
+    {
+      "id": "reclgSHOq8Rukke8t",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Title": "Community Outreach",
+        "Description": "Our team sharing hope and resources in the neighborhood.",
+        "Image_URL": "https://images.unsplash.com/photo-1511100019294-7f41932c6018?auto=format&fit=crop&q=80&w=800"
+      }
+    }
+  ],
+  "Site_Content": [
+    {
+      "id": "rec2P1XD9KRtPlbiV",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Key": "mission_text",
+        "Content": "To raise a generation of believers who are spiritually enlightened, socially responsible, and empowered by the Holy Spirit to impact their world with the Gospel of Jesus Christ. We strive to create an atmosphere where the presence of God is tangible and every soul finds rest and purpose.",
+        "Category": "Mission"
+      }
+    },
+    {
+      "id": "recANbnNlJimmmOdx",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Key": "story_description",
+        "Content": "Mega Blessing Chapel International is more than a church; it is a family of believers dedicated to experiencing and sharing the transformative power of Gods love.",
+        "Category": "Mission"
+      }
+    },
+    {
+      "id": "recMcwWD1rriYJOsn",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Key": "timeline_2020",
+        "Content": "Mega Blessing Chapel International was founded in 2020, marking the beginning of a journey of faith and transformation.",
+        "Category": "Timeline"
+      }
+    },
+    {
+      "id": "reccxfqNrhvh9di6o",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Key": "vision_text",
+        "Content": "To be a global center for spiritual excellence, restoration, and holistic human development. We envision a world where the unconditional love of Christ reaches every home, bringing hope to the hopeless and strength to the weary.",
+        "Category": "Vision"
+      }
+    },
+    {
+      "id": "reckOViPtykXzjZN8",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Key": "story_title",
+        "Content": "Our Story & Mission",
+        "Category": "Mission"
+      }
+    },
+    {
+      "id": "recvc64Np20GS6M0R",
+      "createdTime": "2026-02-21T14:18:53.000Z",
+      "fields": {
+        "Key": "value_text",
+        "Content": "We value integrity, compassion, and service as the foundation of our ministry.",
+        "Category": "Value"
+      }
+    }
+  ],
+  "Membership": [
+    {
+      "id": "recANWapCuOkBRhEZ",
+      "createdTime": "2026-02-21T16:35:08.000Z",
+      "fields": {
+        "Submission ID": "SUB-1771691704655",
+        "FULL NAME": "Kwame",
+        "DATE OF BIRTH": "2026-02-07",
+        "GENDER": "Male",
+        "PLACE OF BIRTH": "Liberai",
+        "HOMETOWN": "Kod",
+        "NATIONALITY": "Ghanain",
+        "MARITAL STATUS": "Widowed",
+        "CONTACT NUMBER": "+23323456788",
+        "WHATSAPP NUMBER": "+2332345667",
+        "YOUR OCCUPATION": "jghfgdsdasA",
+        "MOTHER'S NAME": "dfgfd",
+        "MOTHER'S CONDITION": "Alive",
+        "FATHER'S NAME": "dfsd",
+        "FATHER'S CONDITION": "Alive",
+        "NUMBER OF CHILDREN IF ANY": "0",
+        "SPOUSE CONTACT": "+233",
+        "NEXT OF KIN": "gf",
+        "CONTACT": "+2332345676",
+        "PLACE OF WORK/SCHOOL": "dfgf",
+        "RESIDENTIAL ADDRESS": "sdfghg",
+        "HAVE YOU BEEN BAPTIZED": "YES",
+        "NAME OF PERSON WHO INTRODUCED YOU TO THE CHURCH": "dsdsd",
+        "THE MINISTRIES / DEPARTMENTS OF THE CHRUCH": [
+          "MUSIC",
+          "YOUTH MINISTRY",
+          "MEN'S MINISTRY"
+        ],
+        "Created At": "2026-02-21T16:35:08.000Z",
+        "Age": 0,
+        "Meeting Today": "NO"
+      }
+    }
+  ]
+}

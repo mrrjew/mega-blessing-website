@@ -1,62 +1,27 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import Link from "next/link";
+import { AirtableService } from "@/lib/airtable";
 
-export default function EventDetailPage() {
-    const params = useParams();
-    const id = params.id;
+export default async function EventDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    console.log(`[EventDetailPage] Requested ID: ${id}`);
 
-    // In a real app, this would be a fetch from an API or database
-    const events = [
-        {
-            id: "1",
-            title: "Anointing Service",
-            date: "March 15, 2026",
-            time: "6:00 PM - 9:00 PM",
-            location: "Throne of Grace (Headquarters)",
-            category: "SPECIAL SERVICE",
-            description: "Join us for a powerful time of prophetic anointing and breakthrough. Come with expectations! This service is dedicated to the divine empowerment of every believer for the journey ahead.",
-            longDescription: "The Anointing Service at Mega Blessing Chapel International is a sacred gathering where we seek the fresh touch of the Holy Spirit. Come prepared for a transformative experience of worship, fervent prayer, and the laying on of hands as our Resident Pastor delivers a prophetic word for the season.",
-            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
-        },
-        {
-            id: "2",
-            title: "Youth Impact Summit",
-            date: "April 05, 2026",
-            time: "10:00 AM - 4:00 PM",
-            location: "Restoration Center (Kumasi)",
-            category: "YOUTH",
-            description: "Empowering the next generation to lead with faith and integrity in the modern world.",
-            longDescription: "The Youth Impact Summit is a flagship event of The Youth Hive. This year's theme, 'Rising Above,' focuses on equipping young adults with biblical principles for excellence in education, career, and spiritual life. Featuring guest speakers, creative workshops, and interactive panel discussions.",
-            image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200",
-        },
-        {
-            id: "3",
-            title: "Community Food Drive",
-            date: "April 20, 2026",
-            time: "8:00 AM - 2:00 PM",
-            location: "Local Community Center",
-            category: "OUTREACH",
-            description: "Spreading Christ's love by providing for those in need within our local community.",
-            longDescription: "As part of our commitment to local ministry, the MBCI Community Food Drive aims to support over 500 families this season. We are collecting non-perishable items and fresh produce. Volunteers are needed for sorting, packing, and distribution. Your hands are Christ's hands in action.",
-            image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=1200",
-        }
-    ];
-
-    const event = events.find(e => e.id === id);
+    const events = await AirtableService.getEvents();
+    const event = events?.find((e: any) => e.id === id);
 
     if (!event) {
         return (
-            <div className="flex flex-col items-center justify-center py-20">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Event not found</h2>
-                <Link href="/events" className="text-gold-600 font-bold hover:underline">Back to Events</Link>
+            <div className="flex flex-col items-center justify-center py-20 text-center px-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 font-outfit">Event not found</h2>
+                <p className="text-gray-500 mb-8">The event you are looking for may have been moved or is no longer available.</p>
+                <Link href="/events" className="px-8 py-3 bg-gold-600 text-white font-bold rounded-xl hover:bg-gold-500 transition-all shadow-lg shadow-gold-200">
+                    Back to Events
+                </Link>
             </div>
         );
     }
 
     return (
-        <div className="max-w-5xl mx-auto pb-20">
+        <div className="max-w-5xl mx-auto pb-20 px-4 md:px-0">
             {/* Back Button */}
             <Link href="/events" className="inline-flex items-center gap-2 text-gray-500 hover:text-gold-600 font-semibold mb-8 transition-colors group">
                 <svg className="size-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,7 +43,7 @@ export default function EventDetailPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 px-4 shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 {/* Main Content */}
                 <div className="lg:col-span-2 space-y-8">
                     <div className="prose prose-lg max-w-none">
@@ -158,11 +123,6 @@ export default function EventDetailPage() {
                                 </button>
                                 <button className="p-2 bg-gray-50 rounded-full text-gray-400 hover:text-gold-600 hover:bg-gold-50 transition-all">
                                     <svg className="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" /></svg>
-                                </button>
-                                <button className="p-2 bg-gray-50 rounded-full text-gray-400 hover:text-gold-600 hover:bg-gold-50 transition-all">
-                                    <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                                    </svg>
                                 </button>
                             </div>
                         </div>

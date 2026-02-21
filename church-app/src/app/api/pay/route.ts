@@ -1,34 +1,43 @@
 import { NextResponse } from "next/server";
+import { AirtableService } from "@/lib/airtable";
 
 export async function POST(request: Request) {
     try {
-        const N8N_PAYMENT_WEBHOOK_URL =
-            process.env.N8N_PAYMENT_WEBHOOK_URL ||
-            "https://n8n.gklive.online/webhook/church-retention/pay";
-
         const payload = await request.json();
 
-        // Basic validation
+        // 1. Core Validation
         if (!payload.amount || !payload.reference || !payload.paymentType) {
             return NextResponse.json({ error: "Missing required payment fields" }, { status: 400 });
         }
 
-        const n8nResponse = await fetch(N8N_PAYMENT_WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
+        // 2. Trust the isRecurring flag from the frontend (which includes Plan Consent)
+        const isRecurring = !!payload.isRecurring;
+
+        // 3. Record in Airtable
+        const airtableResult = await AirtableService.createPayment({
+            ...payload,
+            isRecurring
         });
 
-        if (!n8nResponse.ok) {
-            console.error("n8n payment webhook failed:", n8nResponse.statusText);
-            return NextResponse.json({ error: "Failed to record payment" }, { status: 500 });
+        if (!airtableResult || airtableResult.error) {
+            console.error("Airtable payment recording failed:", airtableResult?.error);
+            // We proceed but inform the frontend that sync failed
+            return NextResponse.json({
+                success: true,
+                warning: "Payment verified but server sync delayed",
+                error: airtableResult?.error
+            });
         }
 
-        const data = await n8nResponse.json();
-        return NextResponse.json(data);
+
+        return NextResponse.json({
+            success: true,
+            message: "Payment recorded successfully",
+            id: airtableResult?.id
+        });
 
     } catch (error) {
-        console.error("Payment proxy error:", error);
+        console.error("Payment route error:", error);
         return NextResponse.json({ error: "Internal server error during payment processing" }, { status: 500 });
     }
 }

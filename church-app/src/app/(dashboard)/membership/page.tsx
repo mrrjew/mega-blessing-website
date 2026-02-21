@@ -13,7 +13,7 @@ export default function MembershipPage() {
     const [currentStep, setCurrentStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string | React.ReactNode>("");
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -98,7 +98,18 @@ export default function MembershipPage() {
                 }),
             });
 
-            if (!response.ok) throw new Error("Failed to submit registration");
+            if (response.status === 409) {
+                const data = await response.json();
+                setError(
+                    <div className="flex flex-col gap-2">
+                        <p className="font-bold">This phone number is already registered.</p>
+                        <p className="text-sm opacity-90">Our records show this contact is already part of the family. If you need to update your details, please contact the Church Administration.</p>
+                    </div>
+                );
+                return;
+            }
+
+            if (!response.ok) throw new Error("Failed to submit registration. Please check your connection.");
 
             setSuccess(true);
             localStorage.removeItem("churchMembershipFormData");
@@ -318,15 +329,17 @@ export default function MembershipPage() {
                                             onChange={handleMultiSelect}
                                             className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-gold-500 outline-none bg-white transition-all h-40 scrollbar-thin scrollbar-thumb-gold-200"
                                         >
-                                            <option value="Youth Ministry">Youth Ministry</option>
-                                            <option value="Music">Music</option>
-                                            <option value="Media">Media</option>
-                                            <option value="Ushering">Ushering</option>
-                                            <option value="Choir">Choir</option>
-                                            <option value="Prayer">Prayer</option>
-                                            <option value="Evangelism">Evangelism</option>
-                                            <option value="Technical">Technical</option>
-                                            <option value="Children Ministry">Children Ministry</option>
+                                            <option value="PASTORAL">Pastoral / Leadership</option>
+                                            <option value="MUSIC">Music Ministry (Choir)</option>
+                                            <option value="YOUTH MINISTRY">Youth Ministry</option>
+                                            <option value="MEN'S MINISTRY">Men's Ministry</option>
+                                            <option value="WOMEN'S MINISTRY">Women's Ministry</option>
+                                            <option value="TEEN MINISTRY">Teen Ministry</option>
+                                            <option value="CHILDREN MINISTRY">Children Ministry</option>
+                                            <option value="MEDIA">Media & Technical</option>
+                                            <option value="USHERING">Ushering & Protocol</option>
+                                            <option value="PRAYER">Prayer & Intercession</option>
+                                            <option value="EVANGELISM">Evangelism</option>
                                         </select>
                                         <p className="mt-2 text-xs text-gray-400 font-medium">Hold Ctrl (Windows) or Cmd (Mac) to select multiple.</p>
                                     </div>

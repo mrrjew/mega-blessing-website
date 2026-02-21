@@ -1,34 +1,32 @@
 import { NextResponse } from "next/server";
+import { AirtableService } from "@/lib/airtable";
 
 export async function POST(request: Request) {
     try {
-        const N8N_ATTENDANCE_URL =
-            process.env.N8N_ATTENDANCE_WEBHOOK_URL ||
-            "https://n8n.gklive.online/webhook/church-retention/attendance";
-
         const payload = await request.json();
 
-        // Validation
+        // 1. Validation
         if (!payload.fullName || !payload.phoneNumber || !payload.serviceType) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        const n8nResponse = await fetch(N8N_ATTENDANCE_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-        });
+        // 2. Record in Airtable
+        const airtableResult = await AirtableService.createAttendance(payload);
 
-        if (!n8nResponse.ok) {
-            console.error("n8n attendance webhook failed:", n8nResponse.statusText);
-            return NextResponse.json({ error: "Failed to record attendance" }, { status: 500 });
+        if (!airtableResult || airtableResult.error) {
+            console.error("Airtable attendance recording failed:", airtableResult?.error);
+            return NextResponse.json({ error: airtableResult?.error || "Attendance recording failed" }, { status: airtableResult?.status || 500 });
         }
 
-        const data = await n8nResponse.json();
-        return NextResponse.json(data);
+
+        return NextResponse.json({
+            success: true,
+            message: "Attendance recorded",
+            id: airtableResult?.id
+        });
 
     } catch (error) {
-        console.error("Attendance proxy error:", error);
+        console.error("Attendance route error:", error);
         return NextResponse.json({ error: "Server error processing attendance" }, { status: 500 });
     }
 }

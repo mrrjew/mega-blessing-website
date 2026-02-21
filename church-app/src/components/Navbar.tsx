@@ -11,7 +11,8 @@ const navigation = [
     { name: "Membership", href: "/membership" },
     { name: "Events", href: "/events" },
     { name: "Gallery", href: "/gallery" },
-    { name: "Giving", href: "/payments" },
+    { name: "Payments", href: "/payments" },
+    { name: "Attendance", href: "/attendance" },
 ];
 
 export default function Navbar({ compact = false }: { compact?: boolean }) {
