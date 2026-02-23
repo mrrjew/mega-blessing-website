@@ -16,7 +16,7 @@ export default async function Home() {
         <section className="relative h-[650px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://images.unsplash.com/photo-1438032005730-c77e094df11b?auto=format&fit=crop&q=80&w=2000"
+              src="https://images.unsplash.com/photo-1519491050282-cf00c82424b4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Church Interior"
               className="w-full h-full object-cover"
             />
@@ -105,7 +105,7 @@ export default async function Home() {
                 <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-gold-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
                 <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white">
                   <img
-                    src="https://images.unsplash.com/photo-1544717297-fa95b3496730?auto=format&fit=crop&q=80&w=1000"
+                    src="https://images.unsplash.com/photo-1665495005618-6f55e5f77a07?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Head Pastor"
                     className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
                   />
@@ -148,7 +148,7 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="group relative rounded-[40px] overflow-hidden shadow-2xl shadow-gold-50 border border-gray-100 bg-gray-50 p-4 transition-all hover:scale-[1.01]">
                 <div className="relative h-[350px] rounded-[32px] overflow-hidden mb-8">
-                  <img src="https://images.unsplash.com/photo-1544427920-c49ccfb8da39?auto=format&fit=crop&q=80&w=1200" alt="The Throne of Grace" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src="https://plus.unsplash.com/premium_photo-1678233035754-8ea508fb30b5?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="The Throne of Grace" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute top-6 left-6 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full text-gold-600 font-bold text-sm border border-white/40">HEADQUARTERS</div>
                 </div>
                 <div className="px-6 pb-8">
@@ -163,7 +163,7 @@ export default async function Home() {
 
               <div className="group relative rounded-[40px] overflow-hidden shadow-2xl shadow-gold-50 border border-gray-100 bg-gray-50 p-4 transition-all hover:scale-[1.01]">
                 <div className="relative h-[350px] rounded-[32px] overflow-hidden mb-8">
-                  <img src="https://images.unsplash.com/photo-1438032005730-c77e094df11b?auto=format&fit=crop&q=80&w=1200" alt="Recovery Temple" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src="https://plus.unsplash.com/premium_photo-1669223464455-26df96c59901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNodXJjaHxlbnwwfHwwfHx8MA%3D%3D" alt="Recovery Temple" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute top-6 left-6 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full text-gold-600 font-bold text-sm border border-white/40">RESTORATION CENTER</div>
                 </div>
                 <div className="px-6 pb-8">
@@ -227,7 +227,7 @@ export default async function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="group relative h-[450px] rounded-[40px] overflow-hidden shadow-lg shadow-gray-200">
-                <img src="https://images.unsplash.com/photo-1511000192946-7f41932c6018?auto=format&fit=crop&q=80&w=800" alt="Music Ministry" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                <img src="https://images.unsplash.com/photo-1697490251825-0d6f7f3f7254?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Music Ministry" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/10 to-transparent pt-32 px-10 flex flex-col justify-end pb-12">
                   <h4 className="text-3xl font-bold text-white mb-4">Music Ministry</h4>
                   <p className="text-gray-200 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 font-light leading-relaxed">
